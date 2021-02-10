@@ -19,7 +19,7 @@ import java.util.Arrays;
 //        /
 //
 
-@WebServlet(urlPatterns = {"/http-servlet/*"})
+@WebServlet(urlPatterns = {"/http-servlet/"})
 public class FirstHttpServlet extends HttpServlet {
 
     @Override

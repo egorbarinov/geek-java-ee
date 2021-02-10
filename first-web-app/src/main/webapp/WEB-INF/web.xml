@@ -26,7 +26,12 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/error_servlet</location>
+        <location>/error_servlet404.html</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error_servlet403.html</location>
     </error-page>
 
     <error-page>
