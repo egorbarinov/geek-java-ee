@@ -14,5 +14,12 @@ public class PageHeaderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String header = (String) req.getAttribute("pageHeader");
         resp.getWriter().println("<h1>" + header +"</h1>");
+
+        resp.getWriter().println("<ul>");
+        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/first-servlet'>first-servlet</a></li>");
+        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet'>http-servlet</a></li>");
+        resp.getWriter().println("</ul>");
+
+
     }
 }

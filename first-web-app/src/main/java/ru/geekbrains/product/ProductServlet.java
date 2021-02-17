@@ -7,18 +7,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/http-servlet/product", "/http-servlet/product/"})
+@WebServlet(urlPatterns = {"/http-servlet/products", "/http-servlet/products/"})
 public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("product", "Продукт");
-        getServletContext().getRequestDispatcher("/product").include(req, resp);
+        req.setAttribute("products", "Продукт");
+        getServletContext().getRequestDispatcher("/products").include(req, resp);
 
-        resp.getWriter().println("<a href='./main'> Главная");
-        resp.getWriter().println("<a href='./catalog'> Каталог");
-        resp.getWriter().println("<a href='./product'> Товар");
-        resp.getWriter().println("<a href='./cart'> Корзина");
-        resp.getWriter().println("<a href='./order'> Заказ");
+        resp.getWriter().println("<ul>");
+        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/main'> Главная");
+        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/catalog'> Каталог");
+        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/products'> Товар");
+        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/cart'> Корзина");
+        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/order'> Заказ");
+        resp.getWriter().println("</ul>");
     }
 }
