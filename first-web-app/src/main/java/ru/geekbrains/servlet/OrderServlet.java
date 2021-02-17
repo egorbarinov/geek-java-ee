@@ -1,4 +1,4 @@
-package ru.geekbrains.order;
+package ru.geekbrains.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +18,7 @@ public class OrderServlet extends HttpServlet {
         resp.getWriter().println("<ul>");
         resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/main'> Главная");
         resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/catalog'> Каталог");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/products'> Товар");
+        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/product'> Товар");
         resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/cart'> Корзина");
         resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/order'> Заказ");
         resp.getWriter().println("</ul>");
