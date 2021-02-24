@@ -18,7 +18,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Магазин</a>
+    <a class="navbar-brand" href="#">EShop</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <c:url value="/http-servlet/product/add" var="productAddUrl"/>
+            <c:url value="/product/add" var="productAddUrl"/>
             <form action="${productAddUrl}" method="post">
                 <div class="form-group">
                     <label>Name</label>

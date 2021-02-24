@@ -2,8 +2,8 @@ package ru.geekbrains.servlet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.geekbrains.model.Product;
-import ru.geekbrains.persist.ProductRepository;
+import ru.geekbrains.persist.Product;
+import ru.geekbrains.repository.ProductRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-
-@WebServlet(urlPatterns = "/http-servlet/product/*")
+@WebServlet(urlPatterns = "/product/*")
 public class ProductServlet extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductServlet.class);
@@ -31,15 +30,6 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        resp.getWriter().println("<ul>");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/main'> Главная");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/catalog'> Каталог");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/product'> Товар");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/cart'> Корзина");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/order'> Заказ");
-        resp.getWriter().println("</ul>");
-
         logger.info(req.getPathInfo());
         if (req.getPathInfo() == null || req.getPathInfo().equals("/")) {
             req.setAttribute("products", productRepository.findAll());
@@ -72,7 +62,6 @@ public class ProductServlet extends HttpServlet {
         } else if (req.getPathInfo().equals("/add")) {
             getServletContext().getRequestDispatcher("/WEB-INF/product/add_product.jsp").forward(req, resp);
         }
-
     }
 
     @Override

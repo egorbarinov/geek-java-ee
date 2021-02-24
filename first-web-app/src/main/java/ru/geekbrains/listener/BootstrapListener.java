@@ -1,12 +1,13 @@
 package ru.geekbrains.listener;
 
-import ru.geekbrains.model.Category;
-import ru.geekbrains.model.Product;
-import ru.geekbrains.model.Role;
-import ru.geekbrains.model.User;
-import ru.geekbrains.persist.CategoryRepository;
-import ru.geekbrains.persist.ProductRepository;
-import ru.geekbrains.persist.UserRepository;
+
+import ru.geekbrains.persist.Category;
+import ru.geekbrains.persist.Product;
+import ru.geekbrains.persist.Role;
+import ru.geekbrains.persist.User;
+import ru.geekbrains.repository.CategoryRepository;
+import ru.geekbrains.repository.ProductRepository;
+import ru.geekbrains.repository.UserRepository;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -29,10 +30,10 @@ public class BootstrapListener implements ServletContextListener {
         productRepository.saveOrUpdate(new Product(null, "Product  3",
                 "Description of product 3", new BigDecimal(200)));
 
-        categoryRepository.saveOrUpdate(new Category(null, "Овощи", "отечественные"));
-        categoryRepository.saveOrUpdate(new Category(null, "Фрукты", "иноземные"));
+        categoryRepository.saveOrUpdate(new Category(null, "Напитки", "свежевыжатые соки"));
+        categoryRepository.saveOrUpdate(new Category(null, "Фрукты", "яблоки"));
 
-        userRepository.saveOrUpdate(new User(null, "Egor", "password", Role.ROLE_ADMIN));
+        userRepository.saveOrUpdate(new User(null, "Vasya", "password", Role.ROLE_ADMIN));
         userRepository.saveOrUpdate(new User(null, "user", "user", Role.ROLE_USER));
 
         sce.getServletContext().setAttribute("productRepository", productRepository);
@@ -40,4 +41,8 @@ public class BootstrapListener implements ServletContextListener {
         sce.getServletContext().setAttribute("userRepository", userRepository);
     }
 
+    @Override
+    public void contextDestroyed(ServletContextEvent servletContextEvent) {
+
+    }
 }

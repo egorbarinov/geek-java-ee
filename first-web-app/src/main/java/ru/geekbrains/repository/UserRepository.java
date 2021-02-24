@@ -1,6 +1,6 @@
-package ru.geekbrains.persist;
+package ru.geekbrains.repository;
 
-import ru.geekbrains.model.User;
+import ru.geekbrains.persist.User;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,20 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/http-servlet/cart/","/http-servlet/cart"})
+@WebServlet(urlPatterns = "/cart")
 public class CartServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("cart", "Корзина");
-        getServletContext().getRequestDispatcher("/cart").include(req, resp);
-
-        resp.getWriter().println("<ul>");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/main'> Главная");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/catalog'> Каталог");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/product'> Товар");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/cart'> Корзина");
-        resp.getWriter().println("<li><a href='" + getServletContext().getContextPath() + "/http-servlet/order'> Заказ");
-        resp.getWriter().println("</ul>");
+        getServletContext().getRequestDispatcher("/header").include(req, resp);
+        resp.getWriter().println("<h1>Cart page</h1>");
     }
 }

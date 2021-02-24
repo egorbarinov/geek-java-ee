@@ -2,8 +2,8 @@ package ru.geekbrains.servlet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.geekbrains.model.Category;
-import ru.geekbrains.persist.CategoryRepository;
+import ru.geekbrains.persist.Category;
+import ru.geekbrains.repository.CategoryRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

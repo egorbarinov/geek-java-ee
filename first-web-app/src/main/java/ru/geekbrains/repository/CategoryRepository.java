@@ -1,6 +1,6 @@
-package ru.geekbrains.persist;
+package ru.geekbrains.repository;
 
-import ru.geekbrains.model.Category;
+import ru.geekbrains.persist.Category;
 
 import java.util.ArrayList;
 import java.util.List;

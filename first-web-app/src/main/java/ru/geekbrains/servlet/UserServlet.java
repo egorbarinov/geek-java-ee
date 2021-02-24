@@ -2,9 +2,9 @@ package ru.geekbrains.servlet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.geekbrains.model.Role;
-import ru.geekbrains.model.User;
-import ru.geekbrains.persist.UserRepository;
+import ru.geekbrains.persist.Role;
+import ru.geekbrains.persist.User;
+import ru.geekbrains.repository.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

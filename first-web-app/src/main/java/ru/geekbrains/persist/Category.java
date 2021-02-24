@@ -1,4 +1,4 @@
-package ru.geekbrains.model;
+package ru.geekbrains.persist;
 
 public class Category {
 

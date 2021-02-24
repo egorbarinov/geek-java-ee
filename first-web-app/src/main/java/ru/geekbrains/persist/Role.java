@@ -1,4 +1,4 @@
-package ru.geekbrains.model;
+package ru.geekbrains.persist;
 
 public enum Role {
     ROLE_USER("USER"),
