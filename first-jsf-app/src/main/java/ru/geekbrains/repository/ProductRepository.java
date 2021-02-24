@@ -1,4 +1,6 @@
-package ru.geekbrains.persist;
+package ru.geekbrains.repository;
+
+import ru.geekbrains.persist.Product;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

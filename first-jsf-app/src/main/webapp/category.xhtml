@@ -31,13 +31,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="product.xhtml">Products</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="category.xhtml">Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="user.xhtml">Users</a>
                     </li>
-                    <li class="nav-item active" id="cartLink">
+                    <li class="nav-item" id="cartLink">
                         <h:link value="Cart (#{cartController.size})" outcome="cart.xhtml" styleClass="nav-link"/>
                     </li>
                 </ul>
@@ -46,32 +46,33 @@
     </h:form>
 
     <div class="container">
-        <h3>Корзина</h3>
+        <h3>Категории продуктов</h3>
         <div class="row py-2">
-            <h:form id="cartForm">
+            <h:form id="categoryForm">
                 <div class="col-12">
-                    <h:dataTable value="#{cartController.productsInCart}" var="product" styleClass="table table-bordered my-2">
+                    <h:commandButton value="Add Category" styleClass="btn btn-primary"
+                                     action="#{categoryController.createCategory()}"/>
+                </div>
+
+
+                <div class="col-12">
+                    <h:dataTable value="#{categoryController.allCategories}" var="category" styleClass="table table-bordered my-2">
                         <h:column>
                             <f:facet name="header">Id</f:facet>
-                            #{product.id}
+                            #{category.id}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Name</f:facet>
-                            #{product.name}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Description</f:facet>
-                            #{product.description}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Price</f:facet>
-                            #{product.price}
+                            <f:facet name="header">Category name</f:facet>
+                            #{category.name}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton value="Remove from cart" styleClass="btn btn-danger"
-                                             action="#{cartController.removeFromCart(product)}">
-                                <f:ajax event="click" render="cartForm navForm"/>
+                            <h:commandButton value="Edit" styleClass="btn btn-success"
+                                             action="#{categoryController.editCategory(category)}"/>
+                            <span> </span>
+                            <h:commandButton value="Delete" styleClass="btn btn-danger"
+                                             action="#{categoryController.deleteCategory(category)}">
+                                <f:ajax event="click" render="categoryForm"/>
                             </h:commandButton>
                         </h:column>
                     </h:dataTable>
