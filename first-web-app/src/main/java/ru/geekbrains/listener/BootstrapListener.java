@@ -30,10 +30,10 @@ public class BootstrapListener implements ServletContextListener {
         productRepository.saveOrUpdate(new Product(null, "Product  3",
                 "Description of product 3", new BigDecimal(200)));
 
-        categoryRepository.saveOrUpdate(new Category(null, "Напитки", "свежевыжатые соки"));
+        categoryRepository.saveOrUpdate(new Category(null, "Напитки", "вода"));
         categoryRepository.saveOrUpdate(new Category(null, "Фрукты", "яблоки"));
 
-        userRepository.saveOrUpdate(new User(null, "Vasya", "password", Role.ROLE_ADMIN));
+        userRepository.saveOrUpdate(new User(null, "Vasya", "pass", Role.ROLE_ADMIN));
         userRepository.saveOrUpdate(new User(null, "user", "user", Role.ROLE_USER));
 
         sce.getServletContext().setAttribute("productRepository", productRepository);
