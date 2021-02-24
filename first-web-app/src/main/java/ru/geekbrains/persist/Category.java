@@ -1,8 +1,6 @@
 package ru.geekbrains.persist;
 
-import java.math.BigDecimal;
-
-public class Product {
+public class Category {
 
     private Long id;
 
@@ -10,16 +8,13 @@ public class Product {
 
     private String description;
 
-    private BigDecimal price;
-
-    public Product() {
+    public Category() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price) {
+    public Category(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.price = price;
     }
 
     public Long getId() {
@@ -44,13 +39,5 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 }
