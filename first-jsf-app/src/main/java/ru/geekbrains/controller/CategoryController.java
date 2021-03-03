@@ -3,7 +3,9 @@ package ru.geekbrains.controller;
 import ru.geekbrains.persist.Category;
 import ru.geekbrains.repository.CategoryRepository;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -17,6 +19,17 @@ public class CategoryController implements Serializable {
     private CategoryRepository categoryRepository;
 
     private Category category;
+
+    private List<Category> categories;
+
+    @PostConstruct
+    public void init() {
+        categories = categoryRepository.findAll();
+    }
+
+    public void preloadData(ComponentSystemEvent componentSystemEvent) {
+        categories = categoryRepository.findAll();
+    }
 
     public Category getCategory() {
         return category;
@@ -32,7 +45,7 @@ public class CategoryController implements Serializable {
     }
 
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+        return categories;
     }
 
     public String editCategory(Category category) {
@@ -49,3 +62,4 @@ public class CategoryController implements Serializable {
         return "/category.xhtml?faces-redirect-true";
     }
 }
+

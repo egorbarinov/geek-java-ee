@@ -35,17 +35,16 @@ public class ProductController implements Serializable {
 
     public String createProduct() {
         this.product = new Product();
-        return "/product_form.xhtml?faces-redirect=true";
+        return "/product_form.xhtml?faces-redirect-true";
     }
 
-    // http://127.0.0.1:8080/first-jsf-app//product.xhtml
     public List<Product> getAllProducts() {
         return products;
     }
 
     public String editProduct(Product product) {
         this.product = product;
-        return "/product_form.xhtml?faces-redirect=true";
+        return "/product_form.xhtml?faces-redirect-true";
     }
 
     public void deleteProduct(Product product) {
@@ -54,6 +53,6 @@ public class ProductController implements Serializable {
 
     public String saveProduct() {
         productRepository.saveOrUpdate(product);
-        return "/product.xhtml?faces-redirect=true";
+        return "/product.xhtml?faces-redirect-true";
     }
 }
