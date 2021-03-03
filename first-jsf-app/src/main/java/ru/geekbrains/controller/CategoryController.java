@@ -62,4 +62,3 @@ public class CategoryController implements Serializable {
         return "/category.xhtml?faces-redirect-true";
     }
 }
-

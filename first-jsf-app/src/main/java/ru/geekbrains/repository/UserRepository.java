@@ -62,7 +62,3 @@ public class UserRepository {
         entityManager.createNamedQuery("deleteUserById").setParameter("id", id).executeUpdate();
     }
 }
-
-
-
-
