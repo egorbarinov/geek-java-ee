@@ -34,10 +34,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="category.xhtml">Categories</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="user.xhtml">Users</a>
                     </li>
-                    <li class="nav-item active" id="cartLink">
+                    <li class="nav-item" id="cartLink">
                         <h:link value="Cart (#{cartController.size})" outcome="cart.xhtml" styleClass="nav-link"/>
                     </li>
                 </ul>
@@ -46,32 +46,37 @@
     </h:form>
 
     <div class="container">
-        <h3>Корзина</h3>
+        <h3>Пользователи</h3>
         <div class="row py-2">
-            <h:form id="cartForm">
+            <h:form id="userForm">
                 <div class="col-12">
-                    <h:dataTable value="#{cartController.productsInCart}" var="product" styleClass="table table-bordered my-2">
+                    <h:commandButton value="Add User" styleClass="btn btn-primary"
+                                     action="#{userController.createUser()}"/>
+                </div>
+
+
+                <div class="col-12">
+                    <h:dataTable value="#{userController.allUsers}" var="user" styleClass="table table-bordered my-2">
                         <h:column>
                             <f:facet name="header">Id</f:facet>
-                            #{product.id}
+                            #{user.id}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Name</f:facet>
-                            #{product.name}
+                            #{user.name}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Description</f:facet>
-                            #{product.description}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Price</f:facet>
-                            #{product.price}
+                            <f:facet name="header">Surname</f:facet>
+                            #{user.surname}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton value="Remove from cart" styleClass="btn btn-danger"
-                                             action="#{cartController.removeFromCart(product)}">
-                                <f:ajax event="click" render="cartForm navForm"/>
+                            <h:commandButton value="Edit" styleClass="btn btn-success"
+                                             action="#{userController.editUser(user)}"/>
+                            <span> </span>
+                            <h:commandButton value="Delete" styleClass="btn btn-danger"
+                                             action="#{userController.deleteUser(user)}">
+                                <f:ajax event="click" render="userForm"/>
                             </h:commandButton>
                         </h:column>
                     </h:dataTable>
@@ -94,4 +99,3 @@
 </h:body>
 
 </html>
-
