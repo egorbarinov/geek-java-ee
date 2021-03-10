@@ -1,10 +1,15 @@
 package ru.geekbrains.repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.geekbrains.persist.Category;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,36 +20,33 @@ import java.util.concurrent.atomic.AtomicLong;
 @ApplicationScoped
 public class CategoryRepository {
 
-    private final Map<Long, Category> categoryMap = new ConcurrentHashMap<>();
+    private static final Logger logger = LoggerFactory.getLogger(CategoryRepository.class);
 
-    private final AtomicLong identity = new AtomicLong(0);
-
-    @PostConstruct
-    public void init(){
-        this.saveOrUpdate(new Category(null, "Category 1"));
-        this.saveOrUpdate(new Category(null, "Category 2"));
-        this.saveOrUpdate(new Category(null, "Category 3"));
-        this.saveOrUpdate(new Category(null, "Category 4"));
-    }
-
+    @PersistenceContext(unitName = "ds")
+    private EntityManager entityManager;
 
     public List<Category> findAll() {
-        return new ArrayList<>(categoryMap.values());
+        return entityManager.createNamedQuery("findAllCategories", Category.class).getResultList();
     }
 
     public Category findById(Long id) {
-        return categoryMap.get(id);
+        return entityManager.find(Category.class, id);
     }
 
+    public Long countAll() {
+        return entityManager.createNamedQuery("countAllCategories", Long.class).getSingleResult();
+    }
+
+    @Transactional
     public void saveOrUpdate(Category category) {
         if (category.getId() == null) {
-            Long id = identity.incrementAndGet();
-            category.setId(id);
+            entityManager.persist(category);
         }
-        categoryMap.put(category.getId(), category);
+        entityManager.merge(category);
     }
 
+    @Transactional
     public void deleteById(Long id) {
-        categoryMap.remove(id);
+        entityManager.createNamedQuery("deleteCategoryById").setParameter("id", id).executeUpdate();
     }
 }

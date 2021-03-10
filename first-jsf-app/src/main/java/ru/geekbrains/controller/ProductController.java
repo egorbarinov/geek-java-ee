@@ -4,6 +4,7 @@ import ru.geekbrains.persist.Product;
 import ru.geekbrains.repository.ProductRepository;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -18,6 +19,12 @@ public class ProductController implements Serializable {
 
     private Product product;
 
+    private List<Product> products;
+
+    public void preloadData(ComponentSystemEvent componentSystemEvent) {
+        products = productRepository.findAll();
+    }
+
     public Product getProduct() {
         return product;
     }
@@ -31,9 +38,8 @@ public class ProductController implements Serializable {
         return "/product_form.xhtml?faces-redirect-true";
     }
 
-    // http://127.0.0.1:8080/first-jsf-app//product.xhtml
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return products;
     }
 
     public String editProduct(Product product) {
@@ -45,8 +51,6 @@ public class ProductController implements Serializable {
         productRepository.deleteById(product.getId());
     }
 
-
-    //http://127.0.0.1:8080/first-jsf-app//product.xhtml
     public String saveProduct() {
         productRepository.saveOrUpdate(product);
         return "/product.xhtml?faces-redirect-true";

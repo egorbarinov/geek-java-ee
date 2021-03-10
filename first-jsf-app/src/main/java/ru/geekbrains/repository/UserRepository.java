@@ -1,10 +1,17 @@
 package ru.geekbrains.repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.geekbrains.persist.User;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import javax.transaction.UserTransaction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +22,13 @@ import java.util.concurrent.atomic.AtomicLong;
 @ApplicationScoped
 public class UserRepository {
 
-    private final Map<Long, User> userMap = new ConcurrentHashMap<>();
+    private static final Logger logger = LoggerFactory.getLogger(UserRepository.class);
 
-    private final AtomicLong identity = new AtomicLong(0);
+    @PersistenceContext(unitName = "ds")
+    private EntityManager entityManager;
+
+    @Resource
+    private UserTransaction userTransaction;
 
     @PostConstruct
     public void init(){
@@ -27,22 +38,31 @@ public class UserRepository {
     }
 
     public List<User> findAll() {
-        return new ArrayList<>(userMap.values());
+        return entityManager.createNamedQuery("findAllUsers", User.class).getResultList();
     }
 
     public User findById(Long id) {
-        return userMap.get(id);
+        return entityManager.find(User.class, id);
     }
 
+    public Long countAll() {
+        return entityManager.createNamedQuery("countAllUsers", Long.class).getSingleResult();
+    }
+
+    @Transactional
     public void saveOrUpdate(User user) {
         if (user.getId() == null) {
-            Long id = identity.incrementAndGet();
-            user.setId(id);
+            entityManager.persist(user);
         }
-        userMap.put(user.getId(), user);
+        entityManager.merge(user);
     }
 
+    @Transactional
     public void deleteById(Long id) {
-        userMap.remove(id);
+        entityManager.createNamedQuery("deleteUserById").setParameter("id", id).executeUpdate();
     }
 }
+
+
+
+
