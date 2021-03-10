@@ -7,7 +7,8 @@
 
     <persistence-unit name="ds" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:/jboss/datasources/MySQLDS</jta-data-source>
+        <!--        <jta-data-source>java:/jboss/datasources/MysqlDS</jta-data-source>-->
+        <jta-data-source>java:/jboss/datasources/PostgresDS</jta-data-source>
         <properties>
             <property name="hibernate.connection.useUnicode" value="true"/>
             <property name="hibernate.connection.characterEncoding" value="UTF-8"/>
@@ -17,7 +18,7 @@
             <property name="hibernate.show_sql" value="true"/>
             <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
-            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.format_sql" value="false"/>
         </properties>
     </persistence-unit>
 

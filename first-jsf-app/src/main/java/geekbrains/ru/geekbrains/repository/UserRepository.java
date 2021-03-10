@@ -1,0 +1,54 @@
+package geekbrains.ru.geekbrains.repository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import geekbrains.ru.geekbrains.persist.User;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import javax.transaction.UserTransaction;
+import java.util.List;
+
+@Stateless
+public class UserRepository {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserRepository.class);
+
+    @PersistenceContext(unitName = "ds")
+    private EntityManager entityManager;
+
+    public List<User> findAll() {
+        return entityManager.createNamedQuery("findAllUsers", User.class).getResultList();
+    }
+
+    public User findById(Long id) {
+        return entityManager.find(User.class, id);
+    }
+
+    public Long countAll() {
+        return entityManager.createNamedQuery("countAllUsers", Long.class).getSingleResult();
+    }
+
+    @Transactional
+    public void saveOrUpdate(User user) {
+        if (user.getId() == null) {
+            entityManager.persist(user);
+        }
+        entityManager.merge(user);
+    }
+
+    @Transactional
+    public void deleteById(Long id) {
+        entityManager.createNamedQuery("deleteUserById").setParameter("id", id).executeUpdate();
+    }
+}
+
+
+
+
