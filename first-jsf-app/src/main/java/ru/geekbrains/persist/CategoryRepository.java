@@ -45,4 +45,8 @@ public class CategoryRepository {
     public void deleteById(Long id) {
         entityManager.createNamedQuery("deleteCategoryById").setParameter("id", id).executeUpdate();
     }
+
+    public Category findByName(String name) {
+        return entityManager.createNamedQuery("findCategoryByName", Category.class).setParameter("name", name).getSingleResult();
+    }
 }

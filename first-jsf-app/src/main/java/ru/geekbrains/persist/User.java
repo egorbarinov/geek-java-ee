@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Data
 @NamedQueries({
         @NamedQuery(name = "findAllUsers", query = "from User"),
+        @NamedQuery(name = "findUserByName", query = "from User u where u.name = :name"),
         @NamedQuery(name = "deleteUserById", query = "delete from User u where u.id = :id"),
         @NamedQuery(name = "countAllUsers", query = "select count(*) from User")
 })

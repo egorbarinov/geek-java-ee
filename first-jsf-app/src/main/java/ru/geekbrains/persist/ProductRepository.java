@@ -38,4 +38,13 @@ public class ProductRepository {
     public void deleteById(Long id) {
         entityManager.createNamedQuery("deleteProductById").setParameter("id", id).executeUpdate();
     }
+
+    public Product findByName(String name) {
+        return entityManager.createNamedQuery("findProductByName", Product.class).setParameter("name", name).getSingleResult();
+    }
+
+    public List<Product> findAllByCategory(Long categoryId) {
+        return entityManager.createNamedQuery("findProductByCategory", Product.class).setParameter("category_id", categoryId).getResultList();
+    }
+
 }

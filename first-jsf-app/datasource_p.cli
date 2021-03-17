@@ -1,4 +1,4 @@
-# 1. creating datasource section in standalone.xml config
+cd# 1. creating datasource section in standalone.xml config
 data-source add \
    --jndi-name=java:/jboss/datasources/PostgresDS \
    --name=PostgresDS \
