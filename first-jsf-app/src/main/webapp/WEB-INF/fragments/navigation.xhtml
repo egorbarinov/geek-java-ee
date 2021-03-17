@@ -1,0 +1,35 @@
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+>
+
+<h:form id="navForm">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <h:link value="EShop" outcome="product" styleClass="navbar-brand"/>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item #{pageName == 'Product' ? 'active' : ''}">
+                    <h:link value="Products" outcome="product" styleClass="nav-link"/>
+                </li>
+                <li class="nav-item #{pageName == 'Category' ? 'active' : ''}">
+                    <h:link value="Categories" outcome="category" styleClass="nav-link"/>
+                </li>
+                <li class="nav-item #{pageName == 'User' ? 'active' : ''}">
+                    <h:link value="Users" outcome="user" styleClass="nav-link"/>
+                </li>
+                <li class="nav-item #{pageName == 'Cart' ? 'active' : ''}" id="cartLink">
+                    <h:link value="Cart (#{cartController.size})" outcome="cart" styleClass="nav-link"/>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</h:form>
+
+</html>
