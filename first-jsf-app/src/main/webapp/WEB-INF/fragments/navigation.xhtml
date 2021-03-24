@@ -16,16 +16,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item #{pageName == 'Product' ? 'active' : ''}">
-                    <h:link value="Products" outcome="product" styleClass="nav-link"/>
+                    <h:link value="Products" outcome="/product" styleClass="nav-link"/>
                 </li>
                 <li class="nav-item #{pageName == 'Category' ? 'active' : ''}">
-                    <h:link value="Categories" outcome="category" styleClass="nav-link"/>
-                </li>
-                <li class="nav-item #{pageName == 'User' ? 'active' : ''}">
-                    <h:link value="Users" outcome="user" styleClass="nav-link"/>
+                    <h:link value="Categories" outcome="/category" styleClass="nav-link"/>
                 </li>
                 <li class="nav-item #{pageName == 'Cart' ? 'active' : ''}" id="cartLink">
-                    <h:link value="Cart (#{cartController.size})" outcome="cart" styleClass="nav-link"/>
+                    <h:link value="Cart (#{cartController.size})" outcome="/cart" styleClass="nav-link"/>
+                </li>
+                <li style="display: #{request.isUserInRole('ADMIN') ? 'block' : 'none'}"  class="nav-item #{pageName == 'User' ? 'active' : ''}">
+                    <h:link value="Users" outcome="/admin/user" styleClass="nav-link"/>
+                </li>
+                <li style="display: #{request.isUserInRole('ADMIN') ? 'block' : 'none'}" class="nav-item #{pageName == 'Role' ? 'active' : ''}">
+                    <h:link value="Roles" outcome="/admin/role" styleClass="nav-link"/>
+                </li>
+                <li class="nav-item">
+                    <h:form rendered="#{request.userPrincipal != null}">
+                        <h:commandButton action="#{productController.logout()}" value="Logout #{request.userPrincipal.name}" />
+                    </h:form>
+                    <h:link styleClass="nav-link"
+                            rendered="#{request.userPrincipal == null}"
+                            value="Login"
+                            outcome="/login"/>
                 </li>
             </ul>
         </div>

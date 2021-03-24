@@ -23,6 +23,9 @@ public class UserServiceImpl implements UserService, UserServiceRemote, UserServ
     @EJB
     private UserRepository userRepository;
 
+    @EJB
+    private RoleService roleService;
+
     @Override
     public List<UserDto> findAll() {
         return userRepository.findAll().stream()
@@ -32,14 +35,14 @@ public class UserServiceImpl implements UserService, UserServiceRemote, UserServ
     @Override
     public UserDto findById(Long id) {
         User user = userRepository.findById(id);
-        if(user == null) return null;
+        if (user == null) return null;
         return buildUserDto(user);
     }
 
     @Override
     public UserDto findByName(String name) {
         User user = userRepository.findByName(name);
-        if(user == null) return null;
+        if (user == null) return null;
         return buildUserDto(user);
     }
 
@@ -50,7 +53,7 @@ public class UserServiceImpl implements UserService, UserServiceRemote, UserServ
 
     @Override
     public void insert(UserDto userDto) {
-        if(userDto.getId() != null) {
+        if (userDto.getId() != null) {
             throw new IllegalArgumentException();
         }
         saveOrUpdate(userDto);
@@ -58,7 +61,7 @@ public class UserServiceImpl implements UserService, UserServiceRemote, UserServ
 
     @Override
     public void update(UserDto userDto) {
-        if(userDto.getId() == null) {
+        if (userDto.getId() == null) {
             throw new IllegalArgumentException();
         }
         saveOrUpdate(userDto);
@@ -79,10 +82,11 @@ public class UserServiceImpl implements UserService, UserServiceRemote, UserServ
     public UserDto buildUserDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
-        userDto.setName(user.getName());
-        userDto.setSurname(user.getSurname());
+        userDto.setLogin(user.getLogin());
+        userDto.setPassword(user.getPassword());
+        //TODO
+//        List<RoleDto> roles = user.getRoles().stream().map(roleService::buildRoleDto).collect(Collectors.toList());
+//        userDto.setRoles(roles);
         return userDto;
     }
-
-
 }

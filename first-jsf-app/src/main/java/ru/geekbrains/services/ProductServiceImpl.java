@@ -13,12 +13,15 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
+import javax.jws.WebService;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
+@WebService(endpointInterface = "ru.geekbrains.services.ProductServiceWs", serviceName = "ProductService")
 @Remote(ProductServiceRemote.class)
-public class ProductServiceImpl implements ProductService, ProductServiceRemote, ProductServiceRest {
+public class ProductServiceImpl implements ProductService, ProductServiceRemote,
+        ProductServiceRest, ProductServiceWs {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
