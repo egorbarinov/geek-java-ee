@@ -10,10 +10,7 @@ import java.io.Serializable;
 public class UserDto implements Serializable {
 
     private Long id;
-    private String login;
-    private String password;
-
-    //TODO
-//    private List<RoleDto> roles;
+    private String name;
+    private String surname;
 
 }

@@ -35,14 +35,14 @@ public class UserServiceImpl implements UserService, UserServiceRemote, UserServ
     @Override
     public UserDto findById(Long id) {
         User user = userRepository.findById(id);
-        if (user == null) return null;
+        if(user == null) return null;
         return buildUserDto(user);
     }
 
     @Override
     public UserDto findByName(String name) {
         User user = userRepository.findByName(name);
-        if (user == null) return null;
+        if(user == null) return null;
         return buildUserDto(user);
     }
 
