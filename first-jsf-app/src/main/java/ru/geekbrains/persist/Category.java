@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 @NamedQueries({
         @NamedQuery(name = "findAllCategories", query = "from Category"),
+        @NamedQuery(name = "findCategoryByName", query = "from Category c where c.name = :name"),
         @NamedQuery(name = "deleteCategoryById", query = "delete from Category c where c.id = :id"),
         @NamedQuery(name = "countAllCategories", query = "select count(*) from Category")
 })

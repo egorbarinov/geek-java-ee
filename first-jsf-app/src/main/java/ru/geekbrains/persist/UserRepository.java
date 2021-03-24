@@ -39,6 +39,12 @@ public class UserRepository {
 
     @Transactional
     public void deleteById(Long id) {
-        entityManager.createNamedQuery("deleteUserById").setParameter("id", id).executeUpdate();
+        entityManager.createNamedQuery("deleteUserById")
+                .setParameter("id", id).executeUpdate();
+    }
+
+    public User findByName(String name) {
+        return entityManager.createNamedQuery("findUserByName", User.class)
+                .setParameter("name", name).getSingleResult();
     }
 }

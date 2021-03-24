@@ -1,0 +1,65 @@
+GET http://localhost:8080/first-jsf-app/api/v1/products
+
+###
+
+GET http://localhost:8080/first-jsf-app/api/v1/categories
+
+###
+
+POST http://localhost:8080/first-jsf-app/api/v1/categories
+Content-Type: application/json
+
+ {
+    "name": "Furniture"
+  }
+
+###
+
+GET http://localhost:8080/first-jsf-app/api/v1/users
+
+###
+
+POST http://localhost:8080/first-jsf-app/api/v1/users
+Content-Type: application/json
+
+{
+  "name": "Максим",
+  "surname": "Горький"
+}
+
+###
+
+GET http://localhost:8080/first-jsf-app/api/v1/products/6
+
+###
+
+POST http://localhost:8080/first-jsf-app/api/v1/products
+Content-Type: application/json
+
+{
+  "categoryId": 2,
+  "categoryName": "Notebooks",
+  "description": "Notebook from REST",
+  "name": "REST Nimbus 3000",
+  "price": 5555.55
+}
+
+###
+
+PUT http://localhost:8080/first-jsf-app/api/v1/products
+Content-Type: application/json
+
+{
+  "categoryId": 2,
+  "categoryName": "Notebooks",
+  "description": "Notebook from REST",
+  "id": 6,
+  "name": "REST Nimbus 3000 Limited",
+  "price": 5555.55
+}
+
+###
+
+DELETE http://localhost:8080/first-jsf-app/api/v1/products
+
+4

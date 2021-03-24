@@ -24,4 +24,5 @@ public class EjbClient {
         final Properties env = new Properties();
         env.load(EjbClient.class.getClassLoader().getResourceAsStream("wildfly-jndi.properties"));
         return new InitialContext(env);
-    }}
+    }
+}
