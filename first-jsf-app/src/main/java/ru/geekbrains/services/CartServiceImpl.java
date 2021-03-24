@@ -3,6 +3,7 @@ package ru.geekbrains.services;
 
 import ru.geekbrains.dto.ProductDto;
 
+import javax.ejb.Remote;
 import javax.ejb.Stateful;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Stateful
+@Remote(CartServiceRemote.class)
 public class CartServiceImpl implements CartService, CartServiceRemote {
 
     private final Map<Long, ProductDto> cart = new HashMap<>();

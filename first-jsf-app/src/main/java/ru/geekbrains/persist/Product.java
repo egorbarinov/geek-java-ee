@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 @Data
 @NamedQueries({
         @NamedQuery(name = "findAllProducts", query = "from Product"),
+        @NamedQuery(name = "findProductByName", query = "from Product p where p.name = :name"),
+        @NamedQuery(name = "findProductByCategory", query = "from Product p where p.category.id = :category_id"),
         @NamedQuery(name = "deleteProductById", query = "delete from Product p where p.id = :id"),
         @NamedQuery(name = "countAllProducts", query = "select count(*) from Product")
 })
