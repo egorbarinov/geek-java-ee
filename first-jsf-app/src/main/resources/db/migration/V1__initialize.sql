@@ -1,15 +1,22 @@
 create table users
 (
     id      bigserial primary key,
-    name    varchar(255) not null,
-    surname varchar(255)
+    login    varchar(255) not null,
+    password varchar(255)
 );
 
-insert into users (name, surname)
-values ('Козьма', 'Прутков'),
-       ('Max', 'Frei'),
-       ('Emil', 'Azhar'),
-       ('Boris', 'Akunin');
+insert into users (login, password)
+values ('admin', 'admin'),
+       ('guest', 'guest');
+
+create table roles
+(
+    id      bigserial primary key,
+    name    varchar(255) not null
+);
+
+insert into roles (name)
+values ('ADMIN'), ('GUEST');
 
 create table categories
 (

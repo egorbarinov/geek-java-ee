@@ -6,7 +6,9 @@ import ru.geekbrains.services.ProductService;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
+import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,6 +22,9 @@ public class ProductController implements Serializable {
     private ProductDto product;
 
     private List<ProductDto> products;
+
+    @Inject
+    private HttpSession httpSession;
 
     public void preloadData(ComponentSystemEvent componentSystemEvent) {
         products = productService.findAll();
@@ -53,6 +58,11 @@ public class ProductController implements Serializable {
 
     public String saveProduct() {
         productService.saveOrUpdate(product);
+        return "/product.xhtml?faces-redirect=true";
+    }
+
+    public Object logout() {
+        httpSession.invalidate();
         return "/product.xhtml?faces-redirect=true";
     }
 }
